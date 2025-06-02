@@ -12,12 +12,11 @@ def criar_livro():
     livro = {"id": next_id, **dados}
     livros.append(livro)
     next_id += 1
-    return jsonify(livro), 200
-
+    return jsonify(livro), 201
 
 @app.route("/livros", methods=["GET"])
 def listar_livros():
-    pass
+    return jsonify(livros), 200
 
 @app.route("/livros/<int:id>", methods=["GET"])
 def obter_livro(id):
@@ -28,7 +27,12 @@ def obter_livro(id):
 
 @app.route("/livros/<int:id>", methods=["DELETE"])
 def remover_livro(id):
-    pass
+    global livros
+    for livro in livros:
+        if livro['id'] == id:
+            livros = [l for l in livros if l['id'] != id]
+            return '', 204
+    return jsonify({"erro": "Livro não encontrado"}), 404
 
 
 if __name__ == "__main__":
