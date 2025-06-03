@@ -1,0 +1,174 @@
+type: collection.insomnia.rest/5.0
+name: API inventario
+meta:
+  id: wrk_43e15d8b522543b287606e640a2e6eac
+  created: 1748912757601
+  modified: 1748912757601
+collection:
+  - url: http://127.0.0.1:5000/produtos
+    name: Create product
+    meta:
+      id: req_e683b539012b4c9091abe8461bbc5375
+      created: 1748912926391
+      modified: 1748915910466
+      isPrivate: false
+      sortKey: -1748912926391
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "nome": "Conserva",
+          "categoria": "Alimentos",
+          "quantidade_inicial": 15,
+          "preco_unitario": 8.00
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:5000/produtos
+    name: list products
+    meta:
+      id: req_31ef6f82cf484f95aeabf301ed28a66c
+      created: 1748913381438
+      modified: 1748913639485
+      isPrivate: false
+      sortKey: -1748913381438
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:5000/produtos/1/entrada
+    name: entrada estoque
+    meta:
+      id: req_ad5b7fca09064cbc93da52c7b17b7a0e
+      created: 1748913567342
+      modified: 1748913864024
+      isPrivate: false
+      sortKey: -1748913567342
+    method: POST
+    body:
+      mimeType: application/json
+      text: '{"quantidade": 3}'
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:5000/produtos/1/saida
+    name: saida estoque
+    meta:
+      id: req_573d95d074ab420db86a6ca94344eef9
+      created: 1748913667096
+      modified: 1748913882487
+      isPrivate: false
+      sortKey: -1748913667096
+    method: POST
+    body:
+      mimeType: application/json
+      text: '{"quantidade": 1}'
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:5000/produtos/1
+    name: atualizar produto
+    meta:
+      id: req_9ebeba252b49445c8cda7be4fc48a92e
+      created: 1748916196248
+      modified: 1748916360713
+      isPrivate: false
+      sortKey: -1748916196248
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "nome": "Café Torrado",
+          "preco_unitario": 14.90
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:5000/produtos/3
+    name: deletar produto
+    meta:
+      id: req_8fb65aff609d4180a20ae1752abe648a
+      created: 1748916392649
+      modified: 1748916477962
+      isPrivate: false
+      sortKey: -1748916392649
+    method: DELETE
+    body:
+      mimeType: application/json
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_569976f31406552de2b822ef378a8e4b4dfddd5a
+    created: 1748912757608
+    modified: 1748912757608
+environments:
+  name: Base Environment
+  meta:
+    id: env_569976f31406552de2b822ef378a8e4b4dfddd5a
+    created: 1748912757605
+    modified: 1748912757605
+    isPrivate: false
