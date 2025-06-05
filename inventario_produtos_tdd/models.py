@@ -1,3 +1,4 @@
+# arquivo models responsável por toda a lógica do négocio do app
 estoque = []
 proximo_id = 1
 
@@ -27,12 +28,21 @@ def criar_produto(dados):
     return produto.to_dict()
 
 def listar_produtos(filtro_nome=None, filtro_categoria=None):
-    resultado = estoque
+    produtos_filtrados = estoque
+
     if filtro_nome:
-        resultado = [p for p in resultado if filtro_nome.lower() in p.nome.lower()]
+        nome_filtrado = filtro_nome.lower()
+        produtos_filtrados = [
+            p for p in produtos_filtrados
+            if nome_filtrado in p.nome.lower()
+        ]
     if filtro_categoria:
-        resultado = [p for p in resultado if filtro_categoria.lower() in p.categoria.lower()]
-    return [p.to_dict() for p in resultado]
+        categoria_filtrada = filtro_categoria.lower()
+        produtos_filtrados = [
+            p for p in produtos_filtrados
+            if categoria_filtrada in p.categoria.lower()
+        ]
+    return [produto.to_dict() for produto in produtos_filtrados]
 
 def obter_produto_por_id(pid):
     for p in estoque:
@@ -54,7 +64,10 @@ def atualizar_produto(pid, dados):
 
 def remover_produto(pid):
     global estoque
-    estoque = [p for p in estoque if p.id != pid]
+    estoque = [
+        produto for produto in estoque
+        if produto.id != pid
+    ]
 
 def entrada_estoque(pid, qtd):
     if qtd <= 0:
@@ -73,3 +86,4 @@ def saida_estoque(pid, qtd):
         produto.quantidade -= qtd
         return produto.to_dict()
     return None
+

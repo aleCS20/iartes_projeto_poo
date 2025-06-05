@@ -1,3 +1,6 @@
+# app principal que será executado para os testes via API REST
+# começe por aqui para executar o app
+
 from flask import Flask
 from routes import inventario_routes
 

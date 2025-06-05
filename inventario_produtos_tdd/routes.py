@@ -1,3 +1,4 @@
+# arquivo de rotas para identificar as rotas de cada método (requisição) do app
 from flask import Blueprint, jsonify, request
 from models import (
     criar_produto, listar_produtos, obter_produto_por_id,
@@ -60,3 +61,4 @@ def rota_remover(pid):
         remover_produto(pid)
         return jsonify({"mensagem": "Removido"}), 200
     return jsonify({"erro": "Produto não encontrado"}), 404
+

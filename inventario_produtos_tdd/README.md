@@ -48,7 +48,7 @@ source venv/bin/activate
 2. **Execute os testes com o unittest**:
 
 ```bash
-python -m unittest discover -s inventario_produtos_tdd/tests
+python -m unittest discover -s tests
 ```
 
 > Também é possível utilizar o script `run_tests.bat` (Windows) para automatizar a execução.
