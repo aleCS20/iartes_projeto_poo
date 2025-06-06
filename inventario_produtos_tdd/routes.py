@@ -20,14 +20,14 @@ def rota_criar_produtos():
         produto = criar_produto(dados)
         return jsonify(produto), 201
     except (KeyError, ValueError):
-        return jsonify({"erro": "Dados inválidos"}), 400
+        return jsonify({"erro": "Dados inválidos!"}), 400
 
 @inventario_routes.route("/produtos/<int:pid>", methods=["GET"])
 def rota_obter_produtos(pid):
     produto = obter_produto_por_id(pid)
     if produto:
         return jsonify(produto.to_dict())
-    return jsonify({"erro": "Produto não encontrado"}), 404
+    return jsonify({"erro": "Produto não encontrado no estoque!"}), 404
 
 @inventario_routes.route("/produtos/<int:pid>", methods=["PUT"])
 def rota_atualizar_produtos(pid):
@@ -35,7 +35,7 @@ def rota_atualizar_produtos(pid):
     produto = atualizar_produto(pid, dados)
     if produto:
         return jsonify(produto)
-    return jsonify({"erro": "Produto não encontrado ou dados inválidos"}), 404
+    return jsonify({"erro": "Produto não encontrado ou dados inválidos!"}), 404
 
 @inventario_routes.route("/produtos/<int:pid>/entrada", methods=["POST"])
 def rota_entrada_de_produtos(pid):
@@ -44,7 +44,7 @@ def rota_entrada_de_produtos(pid):
     produto = entrada_estoque(pid, qtd)
     if produto:
         return jsonify(produto)
-    return jsonify({"erro": "Entrada inválida"}), 400
+    return jsonify({"erro": "Entrada inválida!"}), 400
 
 @inventario_routes.route("/produtos/<int:pid>/saida", methods=["POST"])
 def rota_saida_de_produtos(pid):
@@ -53,12 +53,12 @@ def rota_saida_de_produtos(pid):
     produto = saida_estoque(pid, qtd)
     if produto:
         return jsonify(produto)
-    return jsonify({"erro": "Saída inválida ou estoque insuficiente"}), 400
+    return jsonify({"erro": "Saída inválida ou estoque insuficiente!"}), 400
 
 @inventario_routes.route("/produtos/<int:pid>", methods=["DELETE"])
 def rota_remover_produtos(pid):
     if obter_produto_por_id(pid):
         remover_produto(pid)
-        return jsonify({"mensagem": "Removido"}), 200
-    return jsonify({"erro": "Produto não encontrado"}), 404
+        return jsonify({"mensagem": "Removido!"}), 200
+    return jsonify({"erro": "Produto não encontrado no estoque!"}), 404
 

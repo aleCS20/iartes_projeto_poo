@@ -7,7 +7,7 @@ class TestEstoqueAPI(unittest.TestCase):
         # Cria o cliente de teste para simular requisições
         self.client = app.test_client()
 
-    # Testa a criação e ao listar um produto
+    # Testa a criação e a listagem de um produto
     def test_criar_e_listar_produto(self):
         resposta = self.client.post("/produtos", json={
             "nome": "Arroz",

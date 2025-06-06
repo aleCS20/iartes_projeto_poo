@@ -1,4 +1,5 @@
 
+# ALESSANDRO BARBOSA DE OLIVEIRA
 # 📦 Trabalho Final: Sistema de Gerenciamento de Inventário com Testes Automatizados
 
 Este projeto é um sistema simples de gerenciamento de estoque de produtos com API REST feita em Flask, utilizando armazenamento in-memory e testes automatizados com `unittest`.
@@ -51,6 +52,8 @@ source venv/bin/activate
 
 ```bash
 python -m unittest discover -s tests
+ou
+python -m unittest tests/test_produtos.py
 ```
 
 > Também é possível utilizar o script `run_tests.bat` (Windows) para automatizar a execução.
