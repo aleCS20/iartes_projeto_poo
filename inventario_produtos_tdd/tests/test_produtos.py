@@ -7,7 +7,7 @@ class TestEstoqueAPI(unittest.TestCase):
         # Cria o cliente de teste para simular requisições
         self.client = app.test_client()
 
-    # Testa a criação e listagem de um produto
+    # Testa a criação e ao listar um produto
     def test_criar_e_listar_produto(self):
         resposta = self.client.post("/produtos", json={
             "nome": "Arroz",
@@ -35,13 +35,13 @@ class TestEstoqueAPI(unittest.TestCase):
         self.assertEqual(resposta.status_code, 400)
         self.assertIn("erro", resposta.get_json())
 
-    # Testa a entrada de estoque válida
+    # Testa a entrada de estoque de forma válida
     def test_entrada_estoque(self):
         resposta = self.client.post("/produtos/1/entrada", json={"quantidade": 5})
         self.assertEqual(resposta.status_code, 200)
         self.assertEqual(resposta.get_json()["quantidade"], 15)
 
-    # Testa o comportamento da listagem sem filtros
+    # Testa o comportamento da listagem sem utilizar filtros
     def test_listar_produtos_vazio(self):
         resposta = self.client.get("/produtos")
         self.assertEqual(resposta.status_code, 200)
@@ -58,7 +58,7 @@ class TestEstoqueAPI(unittest.TestCase):
             "quantidade_inicial": 1,
             "preco_unitario": 3.0
         })
-        # Tenta retirar mais do que o disponível
+        # Tenta retirar mais do que o disponível no estoque de um produto
         resposta = self.client.post("/produtos/3/saida", json={"quantidade": 2})
         self.assertEqual(resposta.status_code, 400)
         self.assertIn("erro", resposta.get_json())

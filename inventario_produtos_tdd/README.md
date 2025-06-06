@@ -1,3 +1,4 @@
+
 # 📦 Trabalho Final: Sistema de Gerenciamento de Inventário com Testes Automatizados
 
 Este projeto é um sistema simples de gerenciamento de estoque de produtos com API REST feita em Flask, utilizando armazenamento in-memory e testes automatizados com `unittest`.
@@ -26,6 +27,7 @@ python app.py
 
 - `GET    /produtos` — Listar todos os produtos  
 - `POST   /produtos` — Criar um novo produto  
+- `GET    /produtos/<id>` — Obter detalhes de um produto específico  
 - `POST   /produtos/<id>/entrada` — Registrar entrada de estoque  
 - `POST   /produtos/<id>/saida` — Registrar saída de estoque  
 - `PUT    /produtos/<id>` — Atualizar nome, categoria ou preço unitário de um produto  
@@ -55,12 +57,15 @@ python -m unittest discover -s tests
 
 ---
 
-## 🧪 Como testar com Insomnia (ou Postman)
+## 🔬 Como testar com Postman
 
-Você pode usar uma ferramenta como **Insomnia** para testar a API com facilidade.
+Você pode usar o **Postman** para testar facilmente todos os endpoints da API.
 
-### 📁 Exemplo de JSON para criação de produto (`POST /produtos`):
+### 📁 Criar um produto (`POST /produtos`)
 
+- **URL**: `http://localhost:5000/produtos`
+- **Método**: POST
+- **Body (raw JSON)**:
 ```json
 {
   "nome": "Café",
@@ -70,30 +75,47 @@ Você pode usar uma ferramenta como **Insomnia** para testar a API com facilidad
 }
 ```
 
-### 📥 Entrada de estoque:
+---
 
-**POST** `/produtos/1/entrada`
+### 📋 Listar produtos (`GET /produtos`)
 
+- **URL**: `http://localhost:5000/produtos`
+- **Método**: GET
+
+Você pode adicionar filtros:
+- `?nome=cafe`
+- `?categoria=bebidas`
+
+---
+
+### 📥 Entrada de estoque (`POST /produtos/<id>/entrada`)
+
+- **URL**: `http://localhost:5000/produtos/1/entrada`
+- **Body**:
 ```json
 {
   "quantidade": 5
 }
 ```
 
-### 📤 Saída de estoque:
+---
 
-**POST** `/produtos/1/saida`
+### 📤 Saída de estoque (`POST /produtos/<id>/saida`)
 
+- **URL**: `http://localhost:5000/produtos/1/saida`
+- **Body**:
 ```json
 {
   "quantidade": 3
 }
 ```
 
-### ✏️ Atualizar produto:
+---
 
-**PUT** `/produtos/1`
+### ✏️ Atualizar produto (`PUT /produtos/<id>`)
 
+- **URL**: `http://localhost:5000/produtos/1`
+- **Body**:
 ```json
 {
   "nome": "Café Torrado",
@@ -101,11 +123,13 @@ Você pode usar uma ferramenta como **Insomnia** para testar a API com facilidad
 }
 ```
 
-### 🗑️ Deletar produto:
+---
 
-**DELETE** `/produtos/1`
+### 🗑️ Deletar produto (`DELETE /produtos/<id>`)
 
-*(sem corpo JSON)*
+- **URL**: `http://localhost:5000/produtos/1`
+- **Método**: DELETE
+- **Body**: *(vazio)*
 
 ---
 
@@ -113,11 +137,28 @@ Você pode usar uma ferramenta como **Insomnia** para testar a API com facilidad
 
 ```
 inventario_produtos_tdd/
-├── app.py
-├── routes.py
-├── models.py
+├── app.py                  # Inicializa o app Flask
+├── routes.py               # Define as rotas da API
+├── models.py               # Lógica de negócio e estrutura dos dados
 ├── tests/
-│   └── test_produtos.py
+│   └── test_produtos.py    # Testes automatizados da API
+├── README.md               # Instruções de uso do app para testes
+├── requirements.txt        # arquivo com as bibliotecas necessárias do projeto
+├── Tests Inventario Produtos.postman_collection.json  # arquivo .json de teste do Postman
 ```
 
 ---
+
+## 🚀 Requisitos técnicos
+
+- Python 3.8+
+- Flask
+- Testes com `unittest`
+- Armazenamento em memória (lista Python)
+
+---
+
+## 📅 Entrega
+
+Data limite: 06/06/2025  
+Bom trabalho! 💪
